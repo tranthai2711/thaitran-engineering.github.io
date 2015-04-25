@@ -43,7 +43,7 @@
      
       });
       $('#myMotorSet').on('click',function(){
-        var tmp = parseInt($('#myMotorSpeed').val(),10);
-        console.log("Setting Motor Speed:",tmp)
-        socket.emit('myMotor',{speed:tmp});
+        var data = parseInt($('#myMotorSpeed').val(),10);
+        console.log("Setting Motor Speed:",data)
+        socket.emit('myMotor',{speed:data});
       });
