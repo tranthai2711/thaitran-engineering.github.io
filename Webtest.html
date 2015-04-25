@@ -22,38 +22,36 @@
   </head>
   <body>
     <div class="container">
-        <h1>johnny-five test</h1>
+        <h1>Camera Controlling Station</h1>
     <div class="row">
       <div class="col-md-4">
-      <h4>From Analog 0</h4>
+      <h4>Infomation</h4>
       <textarea class="form-control" style="background:#222; color:#00ff00;" rows="8" id="inData"></textarea>
       </div>
       <div class="col-md-4">
       <h4>Servo to position:</h4>
         <div class="btn-group" data-toggle="buttons">
             <label class="servobtn btn btn-primary">
-              <input type="radio" name="servo" id="servo1" value="0"> 0
+              <input type="radio" name="servo" id="servo1" value="0"> Forward
             </label>
             <label class="servobtn btn btn-primary">
-              <input type="radio" name="servo" id="servo2" value="45"> 45
+              <input type="radio" name="servo" id="servo2" value="45"> Backward
             </label>
             <label class="servobtn btn btn-primary">
-              <input type="radio" name="servo" id="servo3" value="90"> 90
+              <input type="radio" name="servo" id="servo3" value="180"> Turn Left
             </label>
             <label class="servobtn btn btn-primary">
-              <input type="radio" name="servo" id="servo4" value="135"> 135
+              <input type="radio" name="servo" id="servo4" value="0"> Turn Rigth
             </label>            
-            <label class="servobtn btn btn-primary">
-              <input type="radio" name="servo" id="servo5" value="180"> 180
-            </label>
         </div>
       </div>
       <div class="col-md-4">
-      <h4>LED Pulse Delay (ms)</h4>
-      <p><input type="text" class="form-control" id="ledDelay" name="ledDelay" value="1000" /></p>
-      <p><button id="ledSet" class="btn btn-primary">Set Delay</button></p>
+      <h4>Set Servo Angle (0-60))</h4>
+      <p><input type="text" class="form-control" id="myServo" name="myServo" value="30" /></p>
+      <p><button id="myMotorset" class="btn btn-primary">Set Speed</button></p>
       </div>
     </div>
+	<iframe src="http://tinten.dyndns.org:81/doc/page/login.asp" width="600" height="600" style="border:none"></iframe>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -63,7 +61,7 @@
     <script>
 
 
-      var socket = io.connect('http://localhost');
+      var socket = io.connect('http://thaitran-engineering.me/Webtest.html');
 
       socket.on('news', function (data) {
         console.log(data);
@@ -83,10 +81,10 @@
           socket.emit('servo',{pos:$('input[name=servo]:checked').val()});
       });
 
-      $('#ledSet').on('click',function(){
-        var tmp = parseInt($('#ledDelay').val(),10);
-        console.log("Setting LED Delay:",tmp)
-        socket.emit('led',{delay:tmp});
+      $('#myServoSet').on('click',function(){
+        var tmp = parseInt($('#myServoAngle').val(),10);
+        console.log("Setting Servo Angle:",tmp)
+        socket.emit('myServo',{angle:tmp});
       });
 
     </script>
