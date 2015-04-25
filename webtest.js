@@ -23,7 +23,7 @@ app.listen(80);
 
 // handle web server
 function handler (req, res) {
-  fs.readFile(__dirname + '/MotorTesting.html',
+  fs.readFile('https://github.com/tranthai2711/thaitran-engineering.github.io/edit/gh-pages/MotorTesting.html',
   function (err, data) {
     if (err) {
       res.writeHead(500);
