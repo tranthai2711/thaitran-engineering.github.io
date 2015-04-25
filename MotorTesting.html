@@ -45,5 +45,5 @@
       $('#myMotorSet').on('click',function(){
         var tmp = parseInt($('#myMotorSpeed').val(),10);
         console.log("Setting Motor Speed:",tmp)
-        socket.emit('myServo',{speed:tmp});
+        socket.emit('myMotor',{speed:tmp});
       });
